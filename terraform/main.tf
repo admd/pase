@@ -1,3 +1,8 @@
+terraform {
+  backend "pg" {
+        conn_str="postgres://spacewalk:spacewalk@192.168.101.134/susemanager?sslmode=disable"
+  }
+}
 provider "aws" {
   version = "~> 2.51"
   region  = var.region
@@ -12,7 +17,7 @@ module "network" {
 module "server" {
   source                = "./host"
   network_configuration = module.network.configuration
-  volume_size           = 2000
+  volume_size           = 2001
   name                  = "server"
   key_name              = var.key_name
   key_file              = var.key_file
